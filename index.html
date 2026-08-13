@@ -1,523 +1,252 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Divya Angelina | CS, Finance & Human-Centered Technology</title>
-  <style>
-    :root {
-      --bg: #f8f1f3;
-      --text: #4a0d1a;
-      --muted: #7a4a54;
-      --card: #fff7f9;
-      --border: black;
-      --accent: #800020;
-      --accent-soft: #f2dce3;
-      --shadow: rgba(128, 0, 32, 0.08);
-    }
-
-    body.dark {
-      --bg: #5a0015;
-      --text: #fff6f8;
-      --muted: #f2dce3;
-      --card: #6f0f25;
-      --border: black;
-      --accent: #fff6f8;
-      --accent-soft: #40000f;
-      --shadow: rgba(0, 0, 0, 0.35);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Inter, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-      transition: background 0.25s ease, color 0.25s ease;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1080px, 92%);
-      margin: 0 auto;
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(16px);
-      background: color-mix(in srgb, var(--bg) 82%, transparent);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-inner {
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .logo {
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      font-size: 1.15rem;
-    }
-
-    .logo span {
-      color: var(--accent);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    .toggle {
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      padding: 8px 12px;
-      border-radius: 999px;
-      cursor: pointer;
-      box-shadow: 0 6px 18px var(--shadow);
-    }
-
-    .hero {
-      min-height: 78vh;
-      display: grid;
-      align-items: center;
-      padding: 70px 0;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 18px;
-      font-size: 0.95rem;
-    }
-
-    .dot {
-      width: 9px;
-      height: 9px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    h1 {
-      font-size: clamp(3rem, 8vw, 6.8rem);
-      line-height: 0.95;
-      letter-spacing: -0.075em;
-      max-width: 980px;
-      margin-bottom: 24px;
-    }
-
-    .hero-text {
-      max-width: 720px;
-      color: var(--muted);
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
-      margin-bottom: 34px;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      padding: 14px 24px;
-      font-weight: 700;
-      border: 2px solid black;
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn.primary {
-      background: rgb(102, 25, 39);
-      color: #fff6f8;
-      border: 2px solid black;
-    }
-
-    .btn.secondary {
-      background: rgb(102, 25, 39);
-      color: #fff6f8;
-      border: 2px solid black;
-    }
-
-    section {
-      padding: 80px 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-      align-items: end;
-      margin-bottom: 36px;
-    }
-
-    h2 {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      letter-spacing: -0.055em;
-      line-height: 1;
-    }
-
-    .section-note {
-      max-width: 420px;
-      color: var(--muted);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 22px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      padding: 28px;
-      box-shadow: 0 18px 50px var(--shadow);
-    }
-
-    .card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 10px;
-      letter-spacing: -0.02em;
-    }
-
-    .card p, .card li {
-      color: var(--muted);
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .tag {
-      background: var(--accent-soft);
-      color: var(--accent);
-      padding: 7px 11px;
-      border-radius: 999px;
-      font-size: 0.88rem;
-      font-weight: 700;
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .project-card {
-      min-height: 310px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .project-number {
-      color: var(--accent);
-      font-weight: 800;
-      margin-bottom: 18px;
-    }
-
-    .project-card h3 {
-      font-size: 1.45rem;
-      line-height: 1.1;
-      letter-spacing: -0.035em;
-      margin-bottom: 12px;
-    }
-
-    .project-card p {
-      margin-bottom: 18px;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .skill-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 22px;
-    }
-
-    .skill-card h3 {
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-
-    .skill-card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .contact-box {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .contact-icons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .icon-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 14px 22px;
-      color: var(--muted);
-      font-weight: 700;
-      font-size: 1rem;
-      transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 6px 18px var(--shadow);
-    }
-
-    .icon-btn:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px var(--shadow);
-    }
-
-    footer {
-      padding: 36px 0;
-      color: var(--muted);
-      text-align: center;
-      border-top: 1px solid var(--border);
-      font-size: 0.92rem;
-    }
-
-    @media (max-width: 850px) {
-      .about-grid,
-      .project-grid,
-      .skills-grid,
-      .contact-box {
-        grid-template-columns: 1fr;
-      }
-
-      .section-header {
-        display: block;
-      }
-
-      .section-note {
-        margin-top: 14px;
-      }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Divya Angelina — Computer Science, finance, writing, research, and things I'm curious enough to build.">
+  <title>Divya Angelina — Computer Science, Ideas & Curiosity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <nav>
-    <div class="container nav-inner">
-      <a href="#top" class="logo">Angelina<span>.</span></a>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-        <button class="toggle" id="themeToggle">Dark mode</button>
-      </div>
+  <header class="nav">
+    <a class="brand" href="#top">DIVYA ANGELINA</a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#work">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#writing">Writing</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="contact-nav no-underline" href="#contact">Contact</a>
+      <button id="themeToggle" class="theme" aria-label="Switch theme">☼</button>
     </div>
-  </nav>
+  </header>
 
   <main id="top">
     <section class="hero">
-      <div class="container">
-        <div class="eyebrow"><span class="dot"></span> Computer Science • Finance • Product Thinking</div>
-        <h1>Building technology at the intersection of systems, strategy, and people.</h1>
-        <p class="hero-text">
-          I’m Angelina, a Virginia Tech computer science student with minors in finance and viticulture.
-          I’m interested in building scalable, thoughtful technology—especially in environments where
-          technical systems, business strategy, and real-world decision-making come together.
+      <div class="hero-label">COMPUTER SCIENCE @ VIRGINIA TECH · FINANCE · VITICULTURE</div>
+      <h1>I like building things,<br><span>and exploring ideas.</span></h1>
+      <div class="hero-bottom">
+        <p>
+          I'm Angelina (yeah, I go by my middle name). I study computer science, but I tend to wander between technology, writing, entrepreneurship, wine, and whatever else gets interesting.
         </p>
-
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <div class="section-header">
-          <h2>About</h2>
-          <p class="section-note">A focused blend of technical development, analytical thinking, and long-term, global perspective.</p>
-        </div>
-
-        <div class="about-grid">
-          <div class="card">
-            <h3>Who I am</h3>
-            <p>
-              I’m building a strong foundation in software engineering, data-driven thinking, and financial systems. 
-              I focus on writing clean, efficient code while understanding how technology fits into broader business 
-              and user contexts. I value precision, structure, and long-term thinking in building systems, 
-              analyzing data, and solving complex problems.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>What I care about</h3>
-            <p>
-              I’m particularly interested in fintech, product-focused engineering, and high-impact technical roles 
-              where performance and usability both matter. I’m also drawn to disciplines that require attention to 
-              detail and strong decision-making, including data analysis, design, and global markets. These 
-              interests shape how I think about systems, quality, and long-term value.
-             </p>
-          </div>
+        <div class="hero-cta">
+          <a class="solid-button" href="assets/Angelina_Resume.pdf" target="_blank" rel="noreferrer">View my resume ↗</a>
+          <a class="arrow-link" href="#elsewhere">Let's Connect →</a>
         </div>
       </div>
     </section>
 
-    <section id="projects">
-      <div class="container">
-        <div class="section-header">
-          <h2>Projects</h2>
-          <p class="section-note">Work that reflects my focus on problem-solving, usability, and building systems that actually work in practice.</p>
-        </div>
-
-        <div class="project-grid">
-          <article class="card project-card">
-            <div>
-              <h3>Coming Soon</h3>
-              <p>
-                Check back soon for updates
-              </p>
-            </div>
-          </article>
-        </div>
-      </div>
+    <section class="marquee" aria-hidden="true">
+      <span>BUILD · WRITE · THINK · EXPLORE · BUILD · WRITE · THINK · EXPLORE · </span>
     </section>
 
-    <section id="skills">
-      <div class="container">
-        <div class="section-header">
-          <h2>Skills</h2>
-          <p class="section-note">Technical, analytical, and design skills developed through coursework, research, and hands-on experience.</p>
-        </div>
-
-        <div class="skills-grid">
-          <div class="skill-card">
-            <h3>Programming</h3>
-            <p>Java, Python, C++, JavaScript, HTML, CSS, Data Structures &amp; Algorithms</p>
-          </div>
-          <div class="skill-card">
-            <h3>Design</h3>
-            <p>Figma, Prototyping, UI/UX, Wireframing, User-centered Design</p>
-          </div>
-          <div class="skill-card">
-            <h3>HCI</h3>
-            <p>User Research, Usability Testing, Interaction Design</p>
-          </div>
-          <div class="skill-card">
-            <h3>Tools</h3>
-            <p>Git, GitHub, VS Code, Linux, Google Colab, Excel (Data Analysis)</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container contact-box">
+    <section class="section" id="about">
+      <div class="section-head"><span>ABOUT</span></div>
+      <div class="two-col about-layout">
         <div>
-          <h2>Let’s connect.</h2>
-          <p class="section-note">
-            I’m currently seeking opportunities in software engineering, fintech, and product-focused roles.
-            Always open to conversations, collaborations, and new ideas.
+          <p class="display-copy">Technical, but not <em>only</em> technical.</p>
+        </div>
+        <div class="prose">
+          <p>
+            I'm studying Computer Science at Virginia Tech, with minors in Finance and Viticulture.
+            I'm interested in building things, telling stories, and following my curiosity wherever it leads.
+          </p>
+          <p>
+            I've always liked trying things just to see where they go. That's led me to build software, work on research, explore machine learning, and now work on a startup. Along the way, I've also taken on opportunities to mentor students and contribute to the Virginia Tech community. I enjoy learning by doing and seeing where an idea can go, even when I don't know exactly where it will lead at the beginning.
+          </p>
+          <p>
+            Outside of academics and work, I love writing, reading, thinking about chess, learning about wine,
+            and discovering new places to eat. I enjoy documenting my experiences through writing, and I'm especially drawn to people,
+            places, and experiences that challenge the way I think and leave me inspired.
           </p>
         </div>
-        <div class="contact-icons">
-          <a href="https://www.linkedin.com/in/divyaangelina/" target="_blank" class="icon-btn" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-            LinkedIn
-          </a>
-          <a href="https://github.com/divyaangelina" target="_blank" class="icon-btn" aria-label="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-            </svg>
-            GitHub
-          </a>
-          <a href="mailto:angelina28@vt.edu" class="icon-btn" aria-label="Email">
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2"/>
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-            </svg>
-            Email
-          </a>
+      </div>
+
+      <div class="facts">
+        <div><span>STUDYING</span><strong>B.S. Computer Science</strong><small>Virginia Tech · Class of 2028</small></div>
+        <div><span>MINORS</span><strong>Finance · Viticulture</strong><small>Technology meets business meets wine</small></div>
+        <div><span>INTERESTS</span><strong>Writing · Nail Art · Reading</strong><small>Usually falling into something new</small></div>
+      </div>
+    </section>
+
+    <section class="section work-section" id="work">
+      <div class="section-head"><span>SELECTED WORK</span></div>
+      <div class="work-intro">
+        <h2>Things I've built.</h2>
+        <p>These are the technical ones. For everything else, keep scrolling.</p>
+      </div>
+
+      <article class="featured-project">
+        <div class="featured-art">
+          <img class="isolani-shot" src="assets/isolani.png" alt="Screenshot of the Isolani desktop chess application">
+          <div class="featured-tag">CURRENT PROJECT</div>
+        </div>
+        <div class="featured-copy">
+          <div>
+            <p class="mono">PYTHON · PYSIDE6 · MINIMAX · ALPHA-BETA</p>
+            <h3>Isolani</h3>
+            <p class="lede">
+              A desktop chess application built from scratch, with a custom interface,
+              configurable AI difficulty, animated piece movement, legal-move highlighting,
+              move history, and complete game-state management.
+            </p>
+            <p class="lede aside-note">Also, ask me why I named it Isolani.</p>
+          </div>
+          <div class="project-details">
+            <p><span>01</span> Modular architecture separating GUI, engine, and game logic.</p>
+            <p><span>02</span> Minimax engine with alpha-beta pruning.</p>
+            <p><span>03</span> Checkmate, stalemate, draws, undo, restart, and sound.</p>
+          </div>
+          <a class="arrow-link" href="https://github.com/divyaangelina/Isolani" target="_blank" rel="noreferrer">View the repository →</a>
+        </div>
+      </article>
+
+      <div class="project-list">
+        <article class="project-row">
+          <div class="row-num">02</div>
+          <div><p class="mono">KAGGLE · AI · DECISION SYSTEMS</p><h3>Dimitri</h3></div>
+          <p>An AI agent built for a simulated agricultural economy, choosing actions across farming, logistics, investment, and market trading to maximize expected end-of-season wealth.<br><strong>Currently working on this one.</strong></p>
+          <a class="row-arrow" href="https://github.com/divyaangelina/Dimitri" target="_blank" rel="noreferrer" aria-label="View Dimitri on GitHub">↗</a>
+        </article>
+        <article class="project-row">
+          <div class="row-num">03</div>
+          <div><p class="mono">ENTREPRENEURSHIP · PRODUCT DEVELOPMENT · CREATIVE INDUSTRIES</p><h3>Art in Progress</h3></div>
+          <p>A platform for artists to share work in progress, find useful feedback, discover relevant opportunities, and connect with people who are building alongside them.<br><strong>Check out our landing page.</strong></p>
+          <span class="row-arrow">↗</span>
+        </article>
+        <article class="project-row">
+          <div class="row-num">04</div>
+          <div><p class="mono">MACHINE LEARNING · RESEARCH · FORECASTING</p><h3>Farming the Future</h3></div>
+          <p>Climate-resilient crop prediction and temperature forecasting using environmental data from major Indian cities and 25 years of temperature data.</p>
+          <a class="row-arrow" href="https://github.com/divyaangelina/Farming-the-Future" target="_blank" rel="noreferrer" aria-label="View Farming the Future on GitHub">↗</a>
+        </article>
+        <article class="project-row">
+          <div class="row-num">05</div>
+          <div><p class="mono">MOBILE · MIT APP INVENTOR · EMAIL AUTOMATION</p><h3>Special Mention: Coup de Shot</h3></div>
+          <p><strong>This is where it all started.</strong> A vaccination appointment simulator I built for a school competition, with data validation, availability logic, and automated email confirmations. <strong>This is the very thing that got me into computer science.</strong></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section experience-section" id="experience">
+      <div class="section-head"><span>EXPERIENCE</span></div>
+      <div class="experience">
+        <div class="experience-row">
+          <span class="year">MAR 2026—NOW</span>
+          <div><h3>Co-Founder & Product Engineer · Art in Progress</h3><p>Building a platform for emerging artists, combining product development, technology, and community to make creative opportunities more accessible.</p></div>
+        </div>
+        <div class="experience-row">
+          <span class="year">JUL 2026—NOW</span>
+          <div><h3>Director of Data & Web Design · Hokie Activities Board @ Virginia Tech</h3><p>Leading data and web design initiatives to improve how HAB organizes information, communicates with students, and presents its programming online.</p></div>
+        </div>
+        <div class="experience-row">
+          <span class="year">AUG 2026—NOW</span>
+          <div><h3>Director of Partnerships · Innovate LLC @ Virginia Tech</h3><p>Building relationships and partnerships that connect Innovate students with opportunities, organizations, and the broader Virginia Tech community.</p></div>
+        </div>
+        <div class="experience-row">
+          <span class="year">AUG 2025—MAY 2026</span>
+          <div><h3>Undergraduate Teaching Assistant · Pamplin College of Business</h3><p>Supporting students through coursework and helping create a more engaging, collaborative learning environment within Pamplin.</p></div>
+        </div>
+        <div class="experience-row">
+          <span class="year">JUL 2024—AUG 2025</span>
+          <div><h3>Data & Operations Intern · The CollegeSource</h3><p>Automated workflows and streamlined student data operations while supporting high school students through the college application process.</p></div>
         </div>
       </div>
+    </section>
+
+    <section class="currently">
+      <div class="currently-title">
+        <span class="section-head-inline">CURRENTLY</span>
+        <h2>Stuff I'm into<br><em>right now.</em></h2>
+      </div>
+      <div class="currently-items">
+        <div><span>BUILDING</span><strong>Art in Progress</strong></div>
+        <div><span>LEARNING</span><strong>Currently falling down the quantum rabbit hole.</strong></div>
+        <div><span>READING</span><strong><em>Never Lie</em> — Freida McFadden. I love a good mystery.</strong></div>
+        <div><span>GERMAN</span><strong>Ich lerne Deutsch.</strong></div>
+      </div>
+    </section>
+
+    <section class="section writing-section" id="writing">
+      <div class="section-head"><span>WRITING</span></div>
+      <div class="two-col writing-layout">
+        <div><p class="display-copy">I write about <em>things</em> that make me <em>think.</em></p></div>
+        <div class="writing-list">
+          <div class="writing-row">
+            <span>01</span>
+            <div>
+              <p class="mono">THOUGHTS · STORIES · EXPERIENCES</p>
+              <h3>Medium</h3>
+              <p>I'm a writer on Medium. Ask me about it.</p>
+            </div>
+          </div>
+
+          <div class="writing-row">
+            <span>02</span>
+            <div>
+              <p class="mono">REPORTING · JOURNALISM · CULTURE</p>
+              <h3>More Than a Mosh Pit</h3>
+              <p>I pitched a story about Bangalore's metal scene. An editor wanted it. I wrote it. And then… nothing.</p>
+            </div>
+          </div>
+
+          <div class="writing-row writing-row-linked">
+            <span>03</span>
+            <div>
+              <p class="mono">RESEARCH · CHESS · ACADEMIC WRITING</p>
+              <h3>The Gender Gambit</h3>
+              <p>Explored how stereotype threat and social bias shape women's participation and performance in competitive chess.</p>
+            </div>
+            <a class="row-arrow" href="assets/the-gender-gambit.pdf" target="_blank" rel="noreferrer" aria-label="Read The Gender Gambit research paper">↗</a>
+          </div>
+
+          <div class="writing-row writing-row-linked">
+            <span>04</span>
+            <div>
+              <p class="mono">LOCAL GUIDE · FOOD · REVIEWS</p>
+              <h3>Google Maps</h3>
+              <p>I go places. I eat. I write about both. …lowkey took a break from this though.</p>
+            </div>
+            <a class="row-arrow" href="https://maps.app.goo.gl/sAAE2e5SDAxQeA9D6?g_st=iw" target="_blank" rel="noreferrer" aria-label="View Google Maps reviews">↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section elsewhere-section" id="elsewhere">
+      <div class="section-head"><span>ELSEWHERE</span></div>
+      <div class="elsewhere-title">
+        <h2>A few other places<br><em>you can find me.</em></h2>
+      </div>
+      <div class="links-grid">
+        <a href="https://www.linkedin.com/in/divyaangelina/" target="_blank" rel="noreferrer"><b>↗</b><span>LinkedIn</span></a>
+        <a href="https://github.com/divyaangelina" target="_blank" rel="noreferrer"><b>↗</b><span>GitHub</span></a>
+        <a href="https://www.goodreads.com/user/show/140935986-angelina" target="_blank" rel="noreferrer"><b>↗</b><span>Goodreads</span></a>
+        <a href="https://www.pinterest.com/itsnotAngiie/_profile/" target="_blank" rel="noreferrer"><b>↗</b><span>Pinterest</span></a>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <p class="mono">GET IN TOUCH</p>
+      <h2>Have something in mind? I'm always up for a good conversation.</h2>
+      <a class="contact-cta" href="mailto:angelina78042@gmail.com"><em>Let's talk.</em> <span class="contact-arrow">↗</span></a>
     </section>
   </main>
 
+  <div class="ps-note">
+    <span>P.S.</span> If you haven't noticed, my favourite colour's burgundy. Check out the dark mode.
+  </div>
+
   <footer>
-    <p>© 2025 Divya Angelina.</p>
+    <span>© 2026 Angelina</span>
+    
+    <a href="#top">BACK TO THE TOP ↑</a>
   </footer>
 
-  <script>
-    const toggle = document.getElementById('themeToggle');
-    const savedTheme = localStorage.getItem('theme');
-
-    if (savedTheme === 'dark') {
-      document.body.classList.add('dark');
-      toggle.textContent = 'Light mode';
-    }
-
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      const isDark = document.body.classList.contains('dark');
-      toggle.textContent = isDark ? 'Light mode' : 'Dark mode';
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
