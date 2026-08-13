@@ -207,3 +207,18 @@ footer>a{margin-left:auto}
   flex-basis:18px;
   margin-left:3px;
 }
+
+
+.solid-button .external-arrow-svg{
+  width:14px;
+  height:14px;
+  flex:0 0 14px;
+  margin-left:4px;
+  vertical-align:-2px;
+}
+.row-arrow .external-arrow-svg{
+  width:18px;
+  height:18px;
+  flex:0 0 18px;
+  vertical-align:middle;
+}
