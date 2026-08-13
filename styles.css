@@ -130,7 +130,7 @@
 footer>a{margin-left:auto}
 
 
-/* Cross-device external-link arrow: drawn with CSS so it never becomes an emoji. */
+
 .external-arrow{
   display:inline-block;
   position:relative;
@@ -172,6 +172,36 @@ footer>a{margin-left:auto}
   margin-right:2px;
 }
 .contact-arrow.external-arrow{
+  width:18px;
+  height:18px;
+  flex-basis:18px;
+  margin-left:3px;
+}
+
+
+/* External-link arrow: inline SVG, so it renders identically on desktop and mobile. */
+.external-arrow-svg{
+  display:inline-block;
+  width:18px;
+  height:18px;
+  flex:0 0 18px;
+  vertical-align:middle;
+  overflow:visible;
+}
+.external-arrow-svg path{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:square;
+  stroke-linejoin:miter;
+}
+.links-grid a .external-arrow-svg{
+  width:17px;
+  height:17px;
+  flex-basis:17px;
+  margin-right:2px;
+}
+.contact-arrow.external-arrow-svg{
   width:18px;
   height:18px;
   flex-basis:18px;
